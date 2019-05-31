@@ -1,0 +1,1 @@
+This project uses deep learning and LSTM techniques to classify music into genres based on 30-second sound clips. A full report can be found in Report.pdf.

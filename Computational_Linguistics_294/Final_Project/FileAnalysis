@@ -1,0 +1,71 @@
+import nltk
+from nltk.sentiment.vader import SentimentIntensityAnalyzer
+from nltk.corpus import stopwords
+
+def sentAnalysis(lyrics):
+    """Takes lyrics as an input string with UTF-8 encoding and returns a dictionary with all polarity scores"""
+    total_compound = 0                      # running total compound score
+    all_compound = []                       # list of all compound scores
+    total_pos = 0                           # running total of positive scores
+    total_neu = 0                           # running total of neutral scores
+    total_neg = 0                           # running total of negative scores
+
+    lyrics = lyrics.replace("\\n","\n")     # replace the escaped character from UTF-8 with unicode newline
+    lines_list = nltk.tokenize.line_tokenize(lyrics)    # split the lyrics into tokenized lines
+    print(len(lines_list))
+
+    sid = nltk.sentiment.vader.SentimentIntensityAnalyzer() # github.com/cjhutto/vaderSentiment/blob/master/README.rst
+
+    for sentence in lines_list:                         # for every line:
+        ss = sid.polarity_scores(sentence)                  # run polarity analysis
+        total_compound += ss['compound']                    # increment totals and add to list of compounds
+        all_compound.append(ss['compound'])
+        total_pos += ss['pos']
+        total_neu += ss['neu']
+        total_neg += ss['neg']
+
+    return {'compound': total_compound,
+            'allcomp':  all_compound,
+            'pos': total_pos,
+            'neu': total_neu,
+            'neg': total_neg,
+            'lines': len(lines_list)}
+
+
+def stats(lyrics):
+    """Takes a string and prints a number of statistical analyses"""
+    lyrics.replace("\\n", " ")
+    words = lyrics.split(" ")
+    stop = set(stopwords.words('english'))
+    words_filtered = [word.lower().replace("\\n", " ") for word in words if word not in stop] # remove stopwords + '\n'
+    freq = nltk.FreqDist(words_filtered)
+
+    # bigrams:
+    grams = list(nltk.ngrams(words_filtered, 2))
+    grams_freq = nltk.FreqDist(grams)
+
+    print("Hapax:", freq.hapaxes())
+    print("Most Frequent: ", freq.most_common(50))
+    print("bigrams:", grams_freq.most_common(50))
+
+
+def main():
+    """Main function"""
+    # text_file = open("Output.txt", "r",  encoding="utf-8")# for smaller files with split lines
+    text_file = open("Output_all.txt", "r")     # for Output_all.text with no split lines (has '\n' instead)
+    text = text_file.read()
+    text_file.close()
+    SAMPLE_SIZE = text.rpartition('|')[0]       # the size is the number before the '|' (Added by Webscrapper.py)
+    result = sentAnalysis(text)
+    print("Sample size: " + SAMPLE_SIZE)
+    print('number of lines:', result['lines'])
+    print('compound:', result['compound'])
+    print("average compound:", sum(result['allcomp']) / float(len(result['allcomp'])))
+    print('positive:', result['pos'])
+    print('neutral:', result['neu'])
+    print('negative:', result['neg'])
+
+    stats(text)
+
+main()
+

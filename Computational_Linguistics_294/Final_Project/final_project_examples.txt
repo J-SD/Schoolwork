@@ -1,0 +1,53 @@
+-----------------------------TOTAL SAMPLE SIZE:-----------------------------
+artists count: 3067
+album count: 7580
+songs count: 49322
+
+-----------------------------EXAMPLES:-----------------------------
+Your best bet is to come to an agreement.
+compound 0.8126
+neg 0.0
+neu 0.486
+pos 0.514
+
+Also slam your face into the cement.
+compound -0.3818
+neg 0.302
+neu 0.698
+pos 0.0
+
+-----------------------------SMALL SAMPLES:-----------------------------
+number of words: 876132
+FINAL COMPOUND SCORE USING 2000 SAMPLES: -2217.589099999958
+avg = -1.108
+FINAL POSITIVE SCORE: 10786.002999999908
+avg = 5.39300149995
+FINAL NEUTRAL SCORE: 109575.9810000046
+avg = 54.78799
+FINAL NEGATIVE SCORE: 11606.038000000195
+avg = 5.803019
+
+number of words: 883394
+FINAL COMPOUND SCORE USING 2000 SAMPLES: -2309.76050000001
+avg = -1.15488
+FINAL POSITIVE SCORE: 10956.994000000079
+FINAL NEUTRAL SCORE: 110908.97000000431
+FINAL NEGATIVE SCORE: 11830.16600000003
+
+number of words: 438202
+number of lines: 74918
+FINAL COMPOUND SCORE USING 1000 SAMPLES: -1453.2326999999611
+avg =
+FINAL POSITIVE SCORE: 5378.474000000003
+FINAL NEUTRAL SCORE: 55852.57000000127
+FINAL NEGATIVE SCORE: 6024.016000000061
+
+
+-----------------------------FINAL:-----------------------------
+songs: 49322
+number of lines: 3101656
+compound: -101256.355000196
+average compound: -0.03264590109289876
+positive: 248913.7020002777
+neutral: 2542607.0739995944
+negative: 303196.25500013627

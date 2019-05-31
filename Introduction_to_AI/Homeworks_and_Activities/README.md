@@ -1,0 +1,1 @@
+A collection of various homeworks and class activites. Includes Robotics, Machine Learning, and AI projects.

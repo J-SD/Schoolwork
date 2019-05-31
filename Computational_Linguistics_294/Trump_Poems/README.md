@@ -1,0 +1,1 @@
+Using a debate as input, this program creates poems out of Trumps statements. 
